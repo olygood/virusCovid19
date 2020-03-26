@@ -1,6 +1,6 @@
 console.log('hello les gens');
 
-const title = document.querySelector("contries");
+const countriesSelect = document.querySelector("contries");
 const BASE_URL = "https://covid19.mathdro.id/api"
 
 let info = "";
@@ -9,7 +9,7 @@ const infoDiv = document.querySelector(".info");
 let error = null;
 const errorDiv = document.querySelector(".error");
 
-function getCounties(){
+function getCountries(){
     return new Promise((resolve,reject) => {
         fetch(`${BASE_URL}/countries`)
         .then(data => data.json())
@@ -23,8 +23,11 @@ function getCounties(){
         });
     });
 }
-getCounties().then(data =>{
-    console.log("ca marche");
-})
+getCountries().then(data =>{
+    let option;
+    Object.entries(data.countries).forEach(country =>{
+        console.log("country",country)
+    });
+});
 
 
